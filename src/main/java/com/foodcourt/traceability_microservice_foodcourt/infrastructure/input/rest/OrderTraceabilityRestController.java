@@ -51,11 +51,23 @@ public class OrderTraceabilityRestController {
     }
 
     @GetMapping("/efficiency/orders")
+    @Operation(summary = "Get efficiency of the orders")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "20a", description = "Receive efficiency of orders of the restaurant"),
+            @ApiResponse(responseCode = "400", description = "Invalid data"),
+            @ApiResponse(responseCode = "403", description = "Access Denied")
+    })
     public ResponseEntity<List<OrderEfficiencyResponseDto>> getOrderEfficiency(@RequestParam List<Long> orderIds){
         return ResponseEntity.ok(orderTraceabilityHandler.getOrderEfficiency(orderIds));
     }
 
     @GetMapping("/efficiency/employees")
+    @Operation(summary = "Get efficiency of the employees")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "20a", description = "Receive efficiency of employees of the restaurant"),
+            @ApiResponse(responseCode = "400", description = "Invalid data"),
+            @ApiResponse(responseCode = "403", description = "Access Denied")
+    })
     public ResponseEntity<List<EmployeeEfficiencyResponseDto>> getEmployeesRanking(@RequestParam List<Long> orderIds) {
         return ResponseEntity.ok(orderTraceabilityHandler.getEmployeeRanking(orderIds));
     }
