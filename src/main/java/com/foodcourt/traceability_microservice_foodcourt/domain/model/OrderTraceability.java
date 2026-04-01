@@ -16,7 +16,7 @@ public class OrderTraceability {
     private String id;
 
     private Long orderId;
-    private String clientId;
+    private Long clientId;
     private String clientEmail;
 
     private LocalDateTime date;

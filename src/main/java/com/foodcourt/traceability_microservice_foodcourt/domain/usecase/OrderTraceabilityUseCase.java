@@ -4,6 +4,7 @@ import com.foodcourt.traceability_microservice_foodcourt.domain.api.IOrderTracea
 import com.foodcourt.traceability_microservice_foodcourt.domain.model.OrderTraceability;
 import com.foodcourt.traceability_microservice_foodcourt.domain.spi.IOrderTraceabilityPersistencePort;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderTraceabilityUseCase implements IOrderTraceabilityServicePort {
@@ -15,12 +16,13 @@ public class OrderTraceabilityUseCase implements IOrderTraceabilityServicePort {
     }
 
     @Override
-    public void saveTraceability(OrderTraceability traceability) {
-        persistencePort.save(traceability);
+    public void saveTraceability(OrderTraceability orderTraceability) {
+        orderTraceability.setDate(LocalDateTime.now());
+        persistencePort.saveTraceability(orderTraceability);
     }
 
     @Override
-    public List<OrderTraceability> getTraceability(Long orderId, String clientId) {
+    public List<OrderTraceability> getTraceability(Long orderId, Long clientId) {
         return persistencePort.findByOrderIdAndClientId(orderId, clientId);
     }
 }

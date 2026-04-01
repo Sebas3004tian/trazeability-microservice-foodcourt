@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IOrderTraceabilityPersistencePort {
 
-    void save(OrderTraceability traceability);
+    OrderTraceability saveTraceability(OrderTraceability orderTraceability);
 
-    List<OrderTraceability> findByOrderIdAndClientId(Long orderId, String clientId);
+    List<OrderTraceability> findByOrderIdAndClientId(Long orderId, Long clientId);
 }
