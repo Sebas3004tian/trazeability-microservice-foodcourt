@@ -1,6 +1,5 @@
 package com.foodcourt.traceability_microservice_foodcourt.infrastructure.exceptionhandler;
 
-import com.foodcourt.traceability_microservice_foodcourt.infrastructure.exception.*;
 import com.foodcourt.traceability_microservice_foodcourt.infrastructure.exception.SecurityConfigurationException;
 import com.foodcourt.traceability_microservice_foodcourt.infrastructure.exception.TraceabilityNotFoundException;
 import org.springframework.http.HttpStatus;
