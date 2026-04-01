@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface IOrderTraceabilityRepository extends MongoRepository<OrderTraceabilityEntity, String> {
     List<OrderTraceabilityEntity> findByOrderIdAndClientId(Long orderId, Long clientId);
+    List<OrderTraceabilityEntity> findByOrderIdInAndNewStatus(List<Long> orderIds, String status);
 }

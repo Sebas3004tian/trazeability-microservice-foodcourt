@@ -1,6 +1,8 @@
 package com.foodcourt.traceability_microservice_foodcourt.infrastructure.input.rest;
 
 import com.foodcourt.traceability_microservice_foodcourt.application.dto.request.OrderTraceabilityRequestDto;
+import com.foodcourt.traceability_microservice_foodcourt.application.dto.response.EmployeeEfficiencyResponseDto;
+import com.foodcourt.traceability_microservice_foodcourt.application.dto.response.OrderEfficiencyResponseDto;
 import com.foodcourt.traceability_microservice_foodcourt.application.dto.response.OrderTraceabilityResponseDto;
 import com.foodcourt.traceability_microservice_foodcourt.application.handler.IOrderTraceabilityHandler;
 import io.swagger.v3.oas.annotations.Operation;
@@ -47,4 +49,16 @@ public class OrderTraceabilityRestController {
         orderTraceabilityHandler.saveOrderTraceability(orderTraceabilityRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    @GetMapping("/efficiency/orders")
+    public ResponseEntity<List<OrderEfficiencyResponseDto>> getOrderEfficiency(@RequestParam List<Long> orderIds){
+        return ResponseEntity.ok(orderTraceabilityHandler.getOrderEfficiency(orderIds));
+    }
+
+    @GetMapping("/efficiency/employees")
+    public ResponseEntity<List<EmployeeEfficiencyResponseDto>> getEmployeesRanking(@RequestParam List<Long> orderIds) {
+        return ResponseEntity.ok(orderTraceabilityHandler.getEmployeeRanking(orderIds));
+    }
+
+
 }

@@ -8,7 +8,7 @@ import com.foodcourt.traceability_microservice_foodcourt.infrastructure.output.m
 import com.foodcourt.traceability_microservice_foodcourt.infrastructure.output.mongodb.repository.IOrderTraceabilityRepository;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
+import java.util.*;
 
 @RequiredArgsConstructor
 public class OrderTraceabilityMongodbAdapter implements IOrderTraceabilityPersistencePort {
@@ -29,5 +29,18 @@ public class OrderTraceabilityMongodbAdapter implements IOrderTraceabilityPersis
             throw new TraceabilityNotFoundException();
         }
         return orderTraceabilityEntityMapper.toOrderTraceabilityList(orderTraceabilityEntityList);
+    }
+
+    @Override
+    public List<OrderTraceability> findByOrderIdsAndStatus(List<Long> orderIds, String status) {
+
+        List<OrderTraceabilityEntity> entities =
+                orderTraceabilityRepository.findByOrderIdInAndNewStatus(orderIds, status);
+
+        if (entities.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        return orderTraceabilityEntityMapper.toOrderTraceabilityList(entities);
     }
 }
