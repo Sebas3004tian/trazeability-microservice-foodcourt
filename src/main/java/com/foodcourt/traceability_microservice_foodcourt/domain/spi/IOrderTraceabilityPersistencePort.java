@@ -9,4 +9,6 @@ public interface IOrderTraceabilityPersistencePort {
     OrderTraceability saveTraceability(OrderTraceability orderTraceability);
 
     List<OrderTraceability> findByOrderIdAndClientId(Long orderId, Long clientId);
+
+    List<OrderTraceability> findByOrderIdsAndStatus(List<Long> orderIds, String status);
 }
