@@ -1,6 +1,15 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /api/v1
+
 spring:
   application:
     name: traceability-microservice-foodcourt
   data:
     mongodb:
       uri: mongodb+srv://admin:admin@foodcourt.ssff4pq.mongodb.net/foodcourt?retryWrites=true&w=majority&appName=foodcourt
+
+jwt:
+  secret: ${JWT_SECRET_KEY}
+  validity: 3600000
